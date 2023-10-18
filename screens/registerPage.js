@@ -1,10 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, KeyboardAvoidingView, ImageBackground } from 'react-native';
-import { Card } from 'react-native-paper';
 
 const trainBg1 = {uri: 'https://i.pinimg.com/originals/e5/23/94/e52394d622f58c7567822eb84a2cbf62.jpg'}; 
 
-export default function loginPage({ navigation }) {
+export default function registerPage({ navigation }) {
     return (
         <View style={styles.container}>
           <ImageBackground source={trainBg1} resizeMode="cover" style={styles.container}> 
@@ -12,14 +10,16 @@ export default function loginPage({ navigation }) {
               {/*<TopBar style={styles.topItem} />*/}
               <View style={[styles.cardGeneric, styles.centerItemVertical]}>
                 <View style={styles.formGeneric}>
-                  <Text style={styles.formTitle}>Login</Text>
+                  <Text style={styles.formTitle}>Register</Text>
                   <Text style={styles.formText}>Enter Username:</Text>
+                  <TextInput style={styles.input}/>
+                  <Text style={styles.formText}>Enter E-mail:</Text>
                   <TextInput style={styles.input}/>
                   <Text style={styles.formText}>Password:</Text>
                   <TextInput style={styles.input} secureTextEntry={true}/>
-                  <Button title="Submit" color='green' style={styles.submitButton}/>
-                  <Text style={styles.formText}>Don't have an account yet?</Text>
-                  <Button title="Create New Account" color='green' style={styles.submitButton}/>
+                  <Text style={styles.formText}>Re-type Password:</Text>
+                  <TextInput style={styles.input} secureTextEntry={true}/>
+                  <Button title="Submit" style={styles.submitButton} color='green' />
                 </View>
               </View>
             </KeyboardAvoidingView>
@@ -37,14 +37,10 @@ function HomeScreen() {
 }
  
 const styles = StyleSheet.create({
-  container: {
-      flex: 1,
-      flexDirection: 'column',
-  },
-  containerH: {
-    flex: 1,
-    flexDirection: 'row',
-  },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+    },
   centerItemHorizontal: {
     alignSelf: 'center',
   },
@@ -63,7 +59,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   submitButton: {
-    marginBottom: 50,
+    backgroundColor: '',
   },
   cardGeneric: {
     padding: 20,
