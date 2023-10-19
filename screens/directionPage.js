@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, TextInput, Button, KeyboardAvoidingView, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button,Pressable, KeyboardAvoidingView, ImageBackground } from 'react-native';
 import { Card } from 'react-native-paper';
 const trainBg1 = {uri: 'https://i.pinimg.com/originals/e5/23/94/e52394d622f58c7567822eb84a2cbf62.jpg'};
 //const trainBg1 = require('./e52394d622f58c7567822eb84a2cbf62.jpg');
@@ -17,7 +17,7 @@ export default function directionPage({ navigation }) {
                   <TextInput style={styles.input}/>
                   <Text style={styles.formText}>Destination:</Text>
                   <TextInput style={styles.input} secureTextEntry={true}/>
-                   <Button title="Go" style={styles.input_submit} color='green' />
+                   <Pressable style={styles.input_submit}><Text style={styles.formGo}>Go</Text></Pressable>
                 </View>
               </View>
             </KeyboardAvoidingView>
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   input_submit: {
     borderRadius: 50,
-    height: 40,
+    //height: 60,
     width: 90,
     borderWidth: 0,
     alignSelf: 'center',
@@ -99,4 +99,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 10,
   },
+  formGo: {
+      fontFamily: 'Bold',
+      color: 'white',
+      fontSize: 21,
+      alignSelf: 'center',
+      //padding:-100,
+      }
 });

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, KeyboardAvoidingView, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button,Pressable, KeyboardAvoidingView, ImageBackground } from 'react-native';
 import { Card } from 'react-native-paper';
 
 const trainBg1 = {uri: 'https://i.pinimg.com/originals/e5/23/94/e52394d622f58c7567822eb84a2cbf62.jpg'}; 
@@ -17,9 +17,13 @@ export default function loginPage({ navigation }) {
                   <TextInput style={styles.input}/>
                   <Text style={styles.formText}>Password:</Text>
                   <TextInput style={styles.input} secureTextEntry={true}/>
-                  <Button title="Submit" color='green' style={styles.submitButton}/>
-                  <Text style={styles.formText}>Don't have an account yet?</Text>
-                  <Button title="Create New Account" color='green' style={styles.submitButton}/>
+                  <Pressable style={styles.input_submit}>
+                        <Text style={styles.formSubmit}>Submit</Text>
+                      </Pressable>
+                  <Text style={[styles.formText,styles.centerItemHorizontal]}>Don't have an account yet?</Text>
+                  <Pressable style={styles.input_submit}>
+                                          <Text style={styles.formSubmit}>Register</Text>
+                                        </Pressable>
                 </View>
               </View>
             </KeyboardAvoidingView>
@@ -55,6 +59,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   input: {
+  borderRadius:50,
     height: 40,
     borderWidth: 1,
     borderColor: 'white',
@@ -62,6 +67,18 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 10,
   },
+  input_submit: {
+      borderRadius: 50,
+      width: 130,
+      borderWidth: 0,
+      alignSelf: 'center',
+      backgroundColor:'green',
+      borderColor:'green',
+      fontSize: 20,
+      color: 'white',
+      padding: 10,
+      marginVertical: 10,
+    },
   submitButton: {
     marginBottom: 50,
   },
@@ -70,7 +87,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   formGeneric: {
-    backgroundColor: '#006effca',
+  borderRadius:30,
+    backgroundColor: '#308ffdb1',
     padding: 20,
   },
   formText: {
@@ -83,4 +101,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 10,
   },
+  formSubmit: {
+      fontFamily: 'Bold',
+      color: 'white',
+      fontSize: 21,
+      alignSelf: 'center',
+    }
 });
