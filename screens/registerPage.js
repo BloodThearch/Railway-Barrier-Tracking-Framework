@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button, KeyboardAvoidingView, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button,Pressable, KeyboardAvoidingView, ImageBackground } from 'react-native';
 
 const trainBg1 = {uri: 'https://i.pinimg.com/originals/e5/23/94/e52394d622f58c7567822eb84a2cbf62.jpg'}; 
 
@@ -19,7 +19,7 @@ export default function registerPage({ navigation }) {
                   <TextInput style={styles.input} secureTextEntry={true}/>
                   <Text style={styles.formText}>Re-type Password:</Text>
                   <TextInput style={styles.input} secureTextEntry={true}/>
-                  <Button title="Submit" style={styles.submitButton} color='green' />
+                  <Pressable style={styles.input_submit}><Text style={styles.formGo}>Submit</Text></Pressable>
                 </View>
               </View>
             </KeyboardAvoidingView>
@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   input: {
+  borderRadius:50,
     height: 40,
     borderWidth: 1,
     borderColor: 'white',
@@ -58,6 +59,19 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 10,
   },
+  input_submit: {
+      borderRadius: 50,
+      //height: 60,
+      width: 130,
+      borderWidth: 0,
+      alignSelf: 'center',
+      backgroundColor:'green',
+      borderColor:'green',
+      fontSize: 20,
+      color: 'white',
+      padding: 10,
+      marginVertical: 10,
+    },
   submitButton: {
     backgroundColor: '',
   },
@@ -66,8 +80,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   formGeneric: {
-    backgroundColor: '#006effca',
+    backgroundColor: '#308ffdb1',
     padding: 20,
+    borderRadius:30,
   },
   formText: {
     color: 'white',
@@ -79,4 +94,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginBottom: 10,
   },
+  formGo: {
+        fontFamily: 'Bold',
+        color: 'white',
+        fontSize: 21,
+        alignSelf: 'center',
+        //padding:-100,
+        },
 });
