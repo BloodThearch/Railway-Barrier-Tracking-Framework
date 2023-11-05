@@ -15,12 +15,11 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='mapPage'>
+      <Stack.Navigator initialRouteName='loginPage' screenOptions={{ headerShown: false }}>
         <Stack.Screen name="loginPage" component={loginPage} />
         <Stack.Screen name="registerPage" component={registerPage} />
         <Stack.Screen name="directionPage" component={directionPage} />
         <Stack.Screen name="mapPage" component={mapPage} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
