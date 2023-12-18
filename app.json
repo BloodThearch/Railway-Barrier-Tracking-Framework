@@ -20,16 +20,22 @@
     "android": {
       "config": {
         "googleMaps": {
-          "apiKey": ""
+          "apiKey": "AIzaSyAY0eoeKzlXSGd_ycRrndaOWUwZFPk9zsM"
         }
       },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.bloodthearch.RailwayBarrierTrackingFramework"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "79ee7a81-a278-4b11-8264-7b960e4c6d3f"
+      }
     }
   }
 }

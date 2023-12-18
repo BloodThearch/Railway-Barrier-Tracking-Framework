@@ -1,31 +1,78 @@
-import { StyleSheet, Text, View, TextInput, Button,Pressable, KeyboardAvoidingView, ImageBackground } from 'react-native';
-
-const trainBg1 = {uri: 'https://i.pinimg.com/originals/e5/23/94/e52394d622f58c7567822eb84a2cbf62.jpg'}; 
+import { StyleSheet, Text, View, TextInput, Button, Pressable, KeyboardAvoidingView, ImageBackground, } from 'react-native';
+import { registerURL } from './constants';
+import React, { useState } from 'react';
+const trainBg1 = { uri: 'https://i.pinimg.com/originals/e5/23/94/e52394d622f58c7567822eb84a2cbf62.jpg' };
 
 export default function registerPage({ navigation }) {
-    return (
-        <View style={styles.container}>
-          <ImageBackground source={trainBg1} resizeMode="cover" style={styles.container}> 
-            <KeyboardAvoidingView style={styles.container}>
-              {/*<TopBar style={styles.topItem} />*/}
-              <View style={[styles.cardGeneric, styles.centerItemVertical]}>
-                <View style={styles.formGeneric}>
-                  <Text style={styles.formTitle}>Register</Text>
-                  <Text style={styles.formText}>Enter Username:</Text>
-                  <TextInput style={styles.input}/>
-                  <Text style={styles.formText}>Enter E-mail:</Text>
-                  <TextInput style={styles.input}/>
-                  <Text style={styles.formText}>Password:</Text>
-                  <TextInput style={styles.input} secureTextEntry={true}/>
-                  <Text style={styles.formText}>Re-type Password:</Text>
-                  <TextInput style={styles.input} secureTextEntry={true}/>
-                  <Pressable style={styles.input_submit}><Text style={styles.formGo}>Submit</Text></Pressable>
-                </View>
-              </View>
-            </KeyboardAvoidingView>
-          </ImageBackground>
-        </View>
-    );
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  return (
+    <View style={styles.container}>
+      <ImageBackground source={trainBg1} resizeMode="cover" style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
+          {/*<TopBar style={styles.topItem} />*/}
+          <View style={[styles.cardGeneric, styles.centerItemVertical]}>
+            <View style={styles.formGeneric}>
+              <Text style={styles.formTitle}>Register</Text>
+              <Text style={styles.formText}>Enter Username:</Text>
+              <TextInput
+                style={styles.input}
+                value={username}
+                onChangeText={(text) => setUsername(text)}
+              />
+              <Text style={styles.formText}>Enter E-mail:</Text>
+              <TextInput style={styles.input}
+                value={email}
+                onChangeText={(text) => setEmail(text)}
+              />
+              <Text style={styles.formText}>Password:</Text>
+              <TextInput style={styles.input} secureTextEntry={true}
+                value={password}
+                onChangeText={(text) => setPassword(text)}
+              />
+              <Text style={styles.formText}>Re-type Password:</Text>
+              <TextInput style={styles.input} secureTextEntry={true} />
+              <Pressable style={styles.input_submit} onPress={async () => {
+                const registerResult = await doRegister(username, email, password);
+                if (registerResult === 1) {
+                  console.log("hi4");
+                  navigation.navigate('loginPage');
+                }
+              }}><Text style={styles.formGo}>Submit</Text></Pressable>
+            </View>
+          </View>
+        </KeyboardAvoidingView>
+      </ImageBackground>
+    </View>
+  );
+}
+
+async function doRegister(username, email, password) {
+  // console.log("hi1");
+  let result;
+  const res = await fetch(registerURL, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: username,
+      email: email,
+      password: password,
+    }),
+  });
+  // console.log("hi2")
+  result = await res.json();
+  // console.log("hi3")
+  if (result.data === 1) {
+    console.log("Successful Login.")
+    return 1;
+    // navigation.navigate('registerPage')
+  }
+  return 0;
+  console.log(result)
 }
 
 function HomeScreen() {
@@ -35,12 +82,12 @@ function HomeScreen() {
     </View>
   );
 }
- 
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'column',
-    },
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   centerItemHorizontal: {
     alignSelf: 'center',
   },
@@ -51,7 +98,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   input: {
-  borderRadius:50,
+    borderRadius: 50,
     height: 40,
     borderWidth: 1,
     borderColor: 'white',
@@ -60,18 +107,18 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   input_submit: {
-      borderRadius: 50,
-      //height: 60,
-      width: 130,
-      borderWidth: 0,
-      alignSelf: 'center',
-      backgroundColor:'green',
-      borderColor:'green',
-      fontSize: 20,
-      color: 'white',
-      padding: 10,
-      marginVertical: 10,
-    },
+    borderRadius: 50,
+    //height: 60,
+    width: 130,
+    borderWidth: 0,
+    alignSelf: 'center',
+    backgroundColor: 'green',
+    borderColor: 'green',
+    fontSize: 20,
+    color: 'white',
+    padding: 10,
+    marginVertical: 10,
+  },
   submitButton: {
     backgroundColor: '',
   },
@@ -82,7 +129,7 @@ const styles = StyleSheet.create({
   formGeneric: {
     backgroundColor: '#308ffdb1',
     padding: 20,
-    borderRadius:30,
+    borderRadius: 30,
   },
   formText: {
     color: 'white',
@@ -95,10 +142,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   formGo: {
-        fontFamily: 'Bold',
-        color: 'white',
-        fontSize: 21,
-        alignSelf: 'center',
-        //padding:-100,
-        },
+    fontFamily: 'Bold',
+    color: 'white',
+    fontSize: 21,
+    alignSelf: 'center',
+    //padding:-100,
+  },
 });
